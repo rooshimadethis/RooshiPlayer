@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Files"
+        android:icon="@drawable/ic_perm_media_black_48dp"
+        />
+    <item
+        android:title="Queue"
+        android:icon="@drawable/ic_queue_music_black_48dp"
+        />
+    <item
+        android:title="Playlists"
+        android:icon="@drawable/ic_list_alt_black_48dp"
+        />
+</menu>
