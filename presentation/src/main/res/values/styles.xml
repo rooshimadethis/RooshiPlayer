@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CollapsingToolbarCollapsedText">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="CollapsingToolbarExpandedText">
+        <item name="android:textSize">44dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
