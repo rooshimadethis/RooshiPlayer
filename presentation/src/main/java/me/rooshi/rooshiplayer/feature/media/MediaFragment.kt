@@ -19,9 +19,10 @@ import me.rooshi.rooshiplayer.R
 import me.rooshi.rooshiplayer.common.base.MyFragment
 import me.rooshi.rooshiplayer.common.util.extensions.viewBinding
 import me.rooshi.rooshiplayer.databinding.MediaFragmentBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MediaFragment : MyFragment(R.layout.media_fragment), MediaView {
+class MediaFragment @Inject constructor() : MyFragment(R.layout.media_fragment), MediaView {
 
     companion object {
         private const val SelectFilesRequestCode = 0
@@ -67,8 +68,7 @@ class MediaFragment : MyFragment(R.layout.media_fragment), MediaView {
                     data?.clipData?.itemCount
                         ?.let { count -> 0 until count }
                         ?.mapNotNull { i -> data.clipData?.getItemAt(i)?.uri }
-                        ?.forEach {
-                            filesSelectedIntent::onNext}
+                        ?.forEach(filesSelectedIntent::onNext)
                         ?: data?.data?.let(filesSelectedIntent::onNext)
                 }
             }

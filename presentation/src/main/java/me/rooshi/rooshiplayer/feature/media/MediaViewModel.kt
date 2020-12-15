@@ -22,12 +22,17 @@ class MediaViewModel @ViewModelInject constructor(
             .autoDispose(view.scope())
             .subscribe()
 
+        //TODO: autodispose does not work here. It disposes before returning from the file intent
         view.filesSelectedIntent
             .doOnNext {
                 Log.e("result", "kjhgkjhgkjh")
             }
-            .autoDispose(view.scope())
             .subscribe()
+
+    }
+
+    override fun onCleared() {
+        super.onCleared()
 
     }
 
