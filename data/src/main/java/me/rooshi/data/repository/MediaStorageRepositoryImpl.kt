@@ -31,7 +31,9 @@ class MediaStorageRepositoryImpl @Inject constructor(
             val newFile = RpFile()
             newFile.id = keyManager.newId()
             newFile.location = uri.toString()
-            realm.executeTransactionAsync { realm.insertOrUpdate(newFile) }
+            realm.executeTransactionAsync(
+                { bgRealm -> bgRealm.insertOrUpdate(newFile)},
+                {realm.close()}, {realm.close()})
         }
     }
 

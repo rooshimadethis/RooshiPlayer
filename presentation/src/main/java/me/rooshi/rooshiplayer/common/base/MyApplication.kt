@@ -12,7 +12,6 @@ class MyApplication : Application() {
 
     @Inject lateinit var realmMigration: MyRealmMigration
 
-
     override fun onCreate() {
         super.onCreate()
 
