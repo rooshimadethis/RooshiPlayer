@@ -7,12 +7,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import me.rooshi.data.repository.MediaStorageRepositoryImpl
 import me.rooshi.domain.repository.MediaStorageRepository
+import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
 abstract class RepositoryModule {
 
     @Binds
-    @Provides
+    @Singleton
     abstract fun bindMediaStorageRepository(mediaStorageRepositoryImpl: MediaStorageRepositoryImpl) : MediaStorageRepository
 }

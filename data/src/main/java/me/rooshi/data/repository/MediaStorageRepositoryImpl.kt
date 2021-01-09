@@ -28,8 +28,10 @@ class MediaStorageRepositoryImpl @Inject constructor(
         Realm.getDefaultInstance().use { realm ->
             realm.refresh()
 
-            val newFile = RpFile(id = keyManager.newId(), location = uri)
-            realm.executeTransaction { realm.insertOrUpdate(newFile) }
+            val newFile = RpFile()
+            newFile.id = keyManager.newId()
+            newFile.location = uri.toString()
+            realm.executeTransactionAsync { realm.insertOrUpdate(newFile) }
         }
     }
 

@@ -3,7 +3,6 @@ package me.rooshi.rooshiplayer.feature.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.main_activity.view.*
 import me.rooshi.rooshiplayer.R
 import me.rooshi.rooshiplayer.common.base.MyThemedActivity
 import me.rooshi.rooshiplayer.common.util.extensions.viewBinding

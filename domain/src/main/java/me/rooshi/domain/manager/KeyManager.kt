@@ -4,5 +4,5 @@ interface KeyManager {
 
     fun reset()
 
-    fun newId(): Int
+    fun newId(): Long
 }

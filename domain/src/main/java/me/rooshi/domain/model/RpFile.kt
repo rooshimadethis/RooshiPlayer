@@ -6,9 +6,12 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 
-class RpFile(
-    @PrimaryKey @Required var id: Int = 0,
-    var name: String = "",
-    var location: Uri = Uri.EMPTY,
-    var thumbnail: Bitmap? = null
-) : RealmObject()
+
+open class RpFile: RealmObject() {
+
+    @PrimaryKey var id: Long = 0
+    var name: String = ""
+    var location: String = ""
+    //var thumbnail: Bitmap? = null
+
+}

@@ -3,9 +3,8 @@ package me.rooshi.rooshiplayer.common.base
 import android.util.Log
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import io.realm.OrderedRealmCollection
-import io.realm.RealmModel
-import io.realm.RealmRecyclerViewAdapter
+import io.realm.*
+import me.rooshi.rooshiplayer.common.util.extensions.setVisible
 
 abstract class MyRealmAdapter<T: RealmModel, Binding: ViewBinding>
     : RealmRecyclerViewAdapter<T, MyViewHolder<Binding>>(null, true) {
@@ -29,5 +28,29 @@ abstract class MyRealmAdapter<T: RealmModel, Binding: ViewBinding>
         super.updateData(data)
     }
 
-    private fun addListener(data: OrderedRealmCollection<T>?)
+    var emptyView: View? = null
+        set(value) {
+            if (field === value) return
+
+            field = value
+            value?.setVisible(data?.isLoaded == true && data?.isEmpty() == true)
+        }
+
+    private val emptyListener: (OrderedRealmCollection<T>) -> Unit = { data ->
+        emptyView?.setVisible(data.isLoaded && data.isEmpty())
+    }
+
+    private fun addListener(data: OrderedRealmCollection<T>?) {
+        when (data) {
+            is RealmResults<T> -> data.addChangeListener(emptyListener)
+            is RealmList<T> -> data.addChangeListener(emptyListener)
+        }
+    }
+
+    private fun removeListener(data: OrderedRealmCollection<T>?) {
+        when (data) {
+            is RealmResults<T> -> data.removeChangeListener(emptyListener)
+            is RealmList<T> -> data.removeChangeListener(emptyListener)
+        }
+    }
 }
